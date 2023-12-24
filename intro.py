@@ -29,7 +29,7 @@ def show_image(name: str, image: np.ndarray) -> None:
     return:
         None
     """
-    cv2.imshow(name, image)
+    cv2.imshow(name + " (press any key to close)", image)
     logger.info(f"showing the image {name}")
 
     cv2.waitKey(0)
