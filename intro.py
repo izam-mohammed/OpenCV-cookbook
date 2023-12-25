@@ -3,9 +3,10 @@ from pathlib import Path
 import numpy as np
 from logger import logger
 
+
 def read_image(path: Path, flag: int = 1) -> np.ndarray:
     """Reads a image
-    
+
     Args:
         path: the path to the image file
         flag: the flag of the image
@@ -21,7 +22,7 @@ def read_image(path: Path, flag: int = 1) -> np.ndarray:
 
 def show_image(name: str, image: np.ndarray) -> None:
     """show the cv2 image
-    
+
     Args:
         name: name of the image
         image: numpy array representation of the image
@@ -36,17 +37,16 @@ def show_image(name: str, image: np.ndarray) -> None:
     cv2.destroyAllWindows()
 
 
-
 def save_image(path: Path, image: np.ndarray) -> bool:
     """Save the cv2 image
-    
+
     args:
         path: path to the image file
         image: the numpy representation of the image
-    return: 
+    return:
         None
     """
-    
+
     saved = cv2.imwrite(str(path), image)
     logger.info(f"save file {path} status : {saved}")
     return saved

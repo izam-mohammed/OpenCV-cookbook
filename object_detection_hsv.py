@@ -1,7 +1,22 @@
 import cv2
 import numpy as np
+from typing import Union, Annotated
 
-def object_detection_hsv(video_source=0):
+
+def object_detection_hsv(
+    video_source: Union[
+        Annotated[int, "streaming"],
+        Annotated[str, "path to image"],
+    ] = 0
+) -> None:
+    """Perform an object detection using hsv
+
+    args:
+        video_source: the source video path or 0 if using the webcam
+
+    Returns:
+        None
+    """
     # Open a connection to the video source (0 represents the default camera)
     cap = cv2.VideoCapture(video_source)
 
@@ -23,16 +38,17 @@ def object_detection_hsv(video_source=0):
         result_frame = cv2.bitwise_and(frame, frame, mask=mask)
 
         # Display the original frame and the result with the detected object
-        cv2.imshow('Original Frame', frame)
-        cv2.imshow('Detected Object', result_frame)
+        cv2.imshow("Original Frame", frame)
+        cv2.imshow("Detected Object", result_frame)
 
         # Press 'q' to exit the loop
-        if cv2.waitKey(1) & 0xFF == ord('q'):
+        if cv2.waitKey(1) & 0xFF == ord("q"):
             break
 
     # Release the video stream and close all windows
     cap.release()
     cv2.destroyAllWindows()
+
 
 if __name__ == "__main__":
     object_detection_hsv()

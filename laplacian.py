@@ -2,24 +2,37 @@ import cv2
 import numpy as np
 import matplotlib.pyplot as plt
 
-# Read the original image
-image = cv2.imread('data/cat.jpg', cv2.IMREAD_GRAYSCALE)
 
-# Apply Gaussian blur to the image
-blurred_image = cv2.GaussianBlur(image, (5, 5), 0)
+def perform_lapacian(path: str) -> None:
+    """A function that perform the lapacian smoothing in image
 
-# Apply Laplacian filter for edge detection
-laplacian = cv2.Laplacian(blurred_image, cv2.CV_64F)
+    Args:
+        path: The path to the image
 
-# Convert to uint8 for display
-laplacian = np.uint8(np.absolute(laplacian))
+    Returns:
+        None
+    """
+    image = cv2.imread(path, cv2.IMREAD_GRAYSCALE)
 
-# Display the results
-plt.figure(figsize=(10, 6))
+    # Apply Gaussian blur to the image
+    blurred_image = cv2.GaussianBlur(image, (5, 5), 0)
 
-plt.subplot(1, 3, 1), plt.imshow(image, cmap='gray'), plt.title('Original Image')
-plt.subplot(1, 3, 2), plt.imshow(blurred_image, cmap='gray'), plt.title('Gaussian Blur')
-plt.subplot(1, 3, 3), plt.imshow(laplacian, cmap='gray'), plt.title('Laplacian Edge Detection')
+    # Apply Laplacian filter for edge detection
+    laplacian = cv2.Laplacian(blurred_image, cv2.CV_64F)
 
-plt.tight_layout()
-plt.show()
+    # Convert to uint8 for display
+    laplacian = np.uint8(np.absolute(laplacian))
+
+    # Display the results
+    plt.figure(figsize=(10, 6))
+
+    plt.subplot(1, 3, 1), plt.imshow(image, cmap="gray"), plt.title("Original Image")
+    plt.subplot(1, 3, 2), plt.imshow(blurred_image, cmap="gray"), plt.title(
+        "Gaussian Blur"
+    )
+    plt.subplot(1, 3, 3), plt.imshow(laplacian, cmap="gray"), plt.title(
+        "Laplacian Edge Detection"
+    )
+
+    plt.tight_layout()
+    plt.show()

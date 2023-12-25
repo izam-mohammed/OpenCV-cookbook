@@ -1,20 +1,29 @@
 import cv2
 import matplotlib.pyplot as plt
 
-# Read the image
-image = cv2.imread('data/cat.jpg')
 
-# Convert BGR to RGB (Matplotlib uses RGB)
-image_rgb = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+def gaussian_blur(path: str) -> None:
+    """Applying and showing the Gaussian blurred image
 
-# Apply Gaussian blur
-blurred_image = cv2.GaussianBlur(image_rgb, (33, 33), 0)
+    Args:
+        path: The path to the image
 
-# Display the original and blurred images
-plt.figure(figsize=(10, 6))
+    Returns:
+        None
+    """
+    image = cv2.imread(path)
 
-plt.subplot(1, 2, 1), plt.imshow(image_rgb), plt.title('Original Image')
-plt.subplot(1, 2, 2), plt.imshow(blurred_image), plt.title('Blurred Image')
+    # Convert BGR to RGB (Matplotlib uses RGB)
+    image_rgb = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
 
-plt.tight_layout()
-plt.show()
+    # Apply Gaussian blur
+    blurred_image = cv2.GaussianBlur(image_rgb, (33, 33), 0)
+
+    # Display the original and blurred images
+    plt.figure(figsize=(10, 6))
+
+    plt.subplot(1, 2, 1), plt.imshow(image_rgb), plt.title("Original Image")
+    plt.subplot(1, 2, 2), plt.imshow(blurred_image), plt.title("Blurred Image")
+
+    plt.tight_layout()
+    plt.show()
