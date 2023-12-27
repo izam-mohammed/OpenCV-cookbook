@@ -1,6 +1,6 @@
 import cv2
 from pathlib import Path
-from intro import read_image, show_image
+from 01_intro import read_image, show_image
 from typing import Tuple
 from typing_extensions import Annotated
 import numpy as np
