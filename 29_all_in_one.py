@@ -157,8 +157,47 @@ def image_pyramid():
     plt.tight_layout()
     plt.show()
 
+def bitwise_operators():
+    blank = np.zeros((400, 400), dtype="uint8")
+    rectangle = cv2.rectangle(blank.copy(), (30, 30), (370, 370), 255, -1)
+    circle = cv2.circle(blank.copy(), (200, 200), 200, 255, -1)
+
+    bitwise_and = cv2.bitwise_and(rectangle, circle)
+    bitwise_or = cv2.bitwise_or(rectangle, circle)
+    bitwise_xor = cv2.bitwise_xor(rectangle, circle)
+    bitwise_not = cv2.bitwise_not(circle)
+    
+    cv2.imshow("blank image", blank)
+    cv2.imshow("rectangle image", rectangle)
+    cv2.imshow("circle image", circle)
+
+    cv2.imshow("bitwise_and image", bitwise_and)
+    cv2.imshow("bitwise_or image", bitwise_or)
+    cv2.imshow("bitwise xor image", bitwise_xor)
+    cv2.imshow("bitwise not image", bitwise_not)
+
+def masking():
+    blank = np.zeros(img.shape[:2], dtype="uint8")
+    mask = cv2.circle(blank.copy(), (img.shape[1]//2, img.shape[0]//2), 100, 255, -1)
+    masked_img = cv2.bitwise_and(img, img, mask=mask)
+
+    cv2.imshow("mask image", mask)
+    cv2.imshow("masked image", masked_img)
+
+def histogram():
+    plt.figure()
+    plt.title("colored histogram")
+    plt.xlabel("bins")
+    plt.ylabel("# of pixels")
+    colors = ("b", "g", "r")
+    for i, col in enumerate(colors):
+        hist = cv2.calcHist([img], [i], None, [256], [0, 256])
+        plt.plot(hist, color=col)
+        plt.xlim([0, 255])
+        
+    plt.show(), plt.show()
 
 basic()
-image_pyramid()
+histogram()
 
 cv2.waitKey(0)
