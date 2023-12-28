@@ -64,7 +64,7 @@ def shapes():
     cv2.imshow("blank image", blank)
 
     rectangle = cv2.rectangle(blank, (10, 10), (100, 150), (0, 255, 0), 2)
-    line = cv2.line(blank, (150, 150), (150, 350), (255, 0, 0), 1)
+    line = cv2.line(blank, (150, 150), (150, 350), (255, 255, 0), 1)
     circle = cv2.circle(blank, (350, 200), 100, (0, 0, 255), 2)
     cv2.imshow("shapes", blank)
 
@@ -84,6 +84,9 @@ def threshold():
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
     _, binary_image = cv2.threshold(gray, 127, 255, cv2.THRESH_BINARY)
     cv2.imshow("simple binary thresholding", binary_image)
+
+    _, binary_image_inv = cv2.threshold(gray, 127, 255, cv2.THRESH_BINARY_INV)
+    cv2.imshow("Inverse binary thresholding", binary_image_inv)
 
     adp_img = cv2.adaptiveThreshold(
         gray, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY, 11, 2
@@ -220,7 +223,29 @@ def histogram():
     plt.show(), plt.show()
 
 
+def haarcasecade():
+    gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+
+    # detect face
+    haar_casecade_face = cv2.CascadeClassifier("xml_files/haar_face.xml")
+    faces_rect = haar_casecade_face.detectMultiScale(
+        gray, scaleFactor=1.1, minNeighbors=6
+    )
+    for x, y, w, h in faces_rect:
+        cv2.rectangle(img, (x, y), (x + w, y + h), (0, 255, 0), 2)
+
+    # detect eyes
+    haar_casecade_eyes = cv2.CascadeClassifier("xml_files/haar_eye.xml")
+    eyes_rect = haar_casecade_eyes.detectMultiScale(
+        gray, scaleFactor=1.1, minNeighbors=6
+    )
+    for x, y, w, h in eyes_rect:
+        cv2.rectangle(img, (x, y), (x + w, y + h), (0, 0, 255), 2)
+
+    cv2.imshow("image with faces", img)
+
+
 basic()
-histogram()
+haarcasecade()
 
 cv2.waitKey(0)
