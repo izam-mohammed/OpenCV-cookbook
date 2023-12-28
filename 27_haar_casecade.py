@@ -12,8 +12,8 @@ faces_rect = haar_casecade.detectMultiScale(gray, scaleFactor=1.1, minNeighbors=
 logger.info(f"Number of faces found - {len(faces_rect)}")
 
 # drawing rectangle on faces
-for (x, y, w, h) in faces_rect:
-    cv2.rectangle(img, (x, y), (x+w, y+h), (0, 255, 0), 2)
+for x, y, w, h in faces_rect:
+    cv2.rectangle(img, (x, y), (x + w, y + h), (0, 255, 0), 2)
 
 cv2.imshow("with faces", img)
 

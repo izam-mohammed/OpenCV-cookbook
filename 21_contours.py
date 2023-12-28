@@ -7,7 +7,7 @@ cv2.imshow("original image", img)
 gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 cv2.imshow("gray", gray)
 
-canny = cv2.Canny(img, 125, 175) 
+canny = cv2.Canny(img, 125, 175)
 cv2.imshow("canny edges", canny)
 
 # contours
@@ -17,7 +17,9 @@ print(f"{len(contours)} contours found in the image")
 
 blur = cv2.GaussianBlur(gray, (5, 5), cv2.BORDER_DEFAULT)
 canny_blurred = cv2.Canny(blur, 125, 175)
-contours, hierarchies = cv2.findContours(canny_blurred, cv2.RETR_LIST, cv2.CHAIN_APPROX_NONE)
+contours, hierarchies = cv2.findContours(
+    canny_blurred, cv2.RETR_LIST, cv2.CHAIN_APPROX_NONE
+)
 print(f"{len(contours)} contours found after blurring")
 
 

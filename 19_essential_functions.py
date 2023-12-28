@@ -1,4 +1,5 @@
 import cv2
+
 img = cv2.imread("data/cat.jpg")
 cv2.imshow("original cat", img)
 
@@ -7,7 +8,7 @@ gray = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
 cv2.imshow("gray", gray)
 
 # blur img
-blur = cv2.GaussianBlur(img, (9,9), cv2.BORDER_DEFAULT)
+blur = cv2.GaussianBlur(img, (9, 9), cv2.BORDER_DEFAULT)
 cv2.imshow("blur", blur)
 
 # edge cascade
@@ -20,7 +21,7 @@ cv2.imshow("Dialated", dialated)
 
 # eroding
 eroded = cv2.erode(dialated, (3, 3), iterations=3)
-cv2.imshow('eroded', eroded)
+cv2.imshow("eroded", eroded)
 
 # resize
 resized = cv2.resize(img, (200, 200), interpolation=cv2.INTER_CUBIC)

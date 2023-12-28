@@ -21,7 +21,7 @@ cv2.imshow("sobel combined image", combined_sobel)
 
 # canny
 canny = cv2.Canny(gray, 125, 175)
-cv2.imshow("Canny image",canny)
+cv2.imshow("Canny image", canny)
 
 
 cv2.waitKey(0)

@@ -37,4 +37,5 @@ def perform_lapacian(path: str) -> None:
     plt.tight_layout()
     plt.show()
 
+
 perform_lapacian("data/girl.jpg")

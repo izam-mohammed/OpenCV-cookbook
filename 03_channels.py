@@ -28,15 +28,9 @@ def split_image(
     logger.info(f"splitted the image {path} into 3 channels")
 
     if show:
-        cv2.imshow(
-            "Blue", cv2.merge([B, np.zeros_like(G), np.zeros_like(R)])
-        )
-        cv2.imshow(
-            "Green", cv2.merge([np.zeros_like(B), G, np.zeros_like(R)])
-        )
-        cv2.imshow(
-            "Red", image=cv2.merge([np.zeros_like(B), np.zeros_like(G), R])
-        )
+        cv2.imshow("Blue", cv2.merge([B, np.zeros_like(G), np.zeros_like(R)]))
+        cv2.imshow("Green", cv2.merge([np.zeros_like(B), G, np.zeros_like(R)]))
+        cv2.imshow("Red", image=cv2.merge([np.zeros_like(B), np.zeros_like(G), R]))
 
     return B, G, R
 
@@ -70,4 +64,4 @@ if __name__ == "__main__":
     cv2.imshow("original image", img)
     scaled_image = scale_image(img, 0.5)
     cv2.imshow("resized image", scaled_image)
-    cv2.waitKey(0   )
+    cv2.waitKey(0)

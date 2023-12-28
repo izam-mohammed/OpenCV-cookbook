@@ -28,5 +28,6 @@ def thresholding_img(
     cv2.imshow("Binary Thresholded Image", binary_image)
     cv2.waitKey(0)
 
+
 if __name__ == "__main__":
     thresholding_img("data/girl.jpg", 60)
