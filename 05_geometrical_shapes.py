@@ -3,9 +3,6 @@ import cv2
 from pathlib import Path
 from logger import logger
 
-# importing previous modules
-from intro import read_image, show_image
-
 
 def draw_rectangle(
     img: np.ndarray, start_point: tuple, end_point: tuple, color: tuple, thickness: int
@@ -70,8 +67,9 @@ def draw_circle(
 
 
 if __name__ == "__main__":
-    img = read_image(Path("/home/izam/coding/opencv/data/cat.jpg"))
+    img = cv2.imread("/home/izam/coding/opencv/data/cat.jpg")
     img_rectangle = draw_rectangle(img, (5, 5), (220, 220), (255, 0, 0), 2)
     img_line = draw_line(img, (5, 5), (220, 220), (0, 255, 0), 2)
     img_circle = draw_circle(img, (100, 100), 100, (0, 0, 255), 2)
-    show_image(name="cat", image=img_rectangle)
+    cv2.imshow("cat", img_rectangle)
+    cv2.waitKey(0)

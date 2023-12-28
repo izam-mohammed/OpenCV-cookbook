@@ -1,6 +1,5 @@
 import cv2
 from pathlib import Path
-from 01_intro import read_image, show_image
 from typing import Tuple
 from typing_extensions import Annotated
 import numpy as np
@@ -8,7 +7,7 @@ from logger import logger
 
 
 def split_image(
-    path: Path,
+    path: str,
     show: bool = False,
 ) -> Tuple[
     Annotated[np.ndarray, "Blue"],
@@ -24,18 +23,20 @@ def split_image(
     returns:
         annotated tuple of the 3 channels in the image
     """
-    img = read_image(path)
+    img = cv2.imread(path)
     B, G, R = cv2.split(img)
     logger.info(f"splitted the image {path} into 3 channels")
 
     if show:
-        show_image(
-            image=cv2.merge([B, np.zeros_like(G), np.zeros_like(R)]), name="Blue"
+        cv2.imshow(
+            "Blue", cv2.merge([B, np.zeros_like(G), np.zeros_like(R)])
         )
-        show_image(
-            image=cv2.merge([np.zeros_like(B), G, np.zeros_like(R)]), name="Green"
+        cv2.imshow(
+            "Green", cv2.merge([np.zeros_like(B), G, np.zeros_like(R)])
         )
-        show_image(image=cv2.merge([np.zeros_like(B), np.zeros_like(G), R]), name="Red")
+        cv2.imshow(
+            "Red", image=cv2.merge([np.zeros_like(B), np.zeros_like(G), R])
+        )
 
     return B, G, R
 
@@ -64,7 +65,9 @@ def scale_image(img: np.ndarray, scale_factor: float) -> np.ndarray:
 
 if __name__ == "__main__":
     # split_image(path=Path("/home/izam/coding/opencv/data/cat.jpg"), show=True)
-    img = read_image(path=Path("/home/izam/coding/opencv/data/cat.jpg"))
-    show_image(image=img, name="original image")
+    img = cv2.imread("data/girl.jpg")
+    print("hola")
+    cv2.imshow("original image", img)
     scaled_image = scale_image(img, 0.5)
-    show_image(image=scaled_image, name="resized image")
+    cv2.imshow("resized image", scaled_image)
+    cv2.waitKey(0   )

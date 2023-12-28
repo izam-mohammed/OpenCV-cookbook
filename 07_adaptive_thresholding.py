@@ -21,4 +21,3 @@ def adaptive_thresh(path: str) -> None:
     cv2.imshow("Original Image", image)
     cv2.imshow("Adaptive Thresholded Image", adaptive_threshold)
     cv2.waitKey(0)
-    cv2.destroyAllWindows()

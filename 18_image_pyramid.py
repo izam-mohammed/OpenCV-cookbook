@@ -33,3 +33,5 @@ def image_pyramid(path: str) -> None:
 
     plt.tight_layout()
     plt.show()
+
+image_pyramid("data/girl.jpg")

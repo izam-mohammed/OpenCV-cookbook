@@ -33,3 +33,5 @@ def sobel(path: str) -> None:
 
     plt.tight_layout()
     plt.show()
+
+sobel("data/girl.jpg")

@@ -24,3 +24,7 @@ def canny_edge_detection(path: str) -> None:
 
     plt.tight_layout()
     plt.show()
+
+
+if __name__ == "__main__":
+    canny_edge_detection("data/girl.jpg")

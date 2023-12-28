@@ -7,7 +7,7 @@ def update_value(value):
     global img, window_name
     # Do some processing based on the trackbar value
     processed_img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-    _, processed_img = cv2.threshold(processed_img, value, 255, cv2.THRESH_BINARY)
+    _, processed_img = cv2.threshold(processed_img, value, 255, cv2.THRESH_BINARY_INV)
 
     # Display the processed image
     cv2.imshow(window_name, processed_img)
@@ -15,7 +15,7 @@ def update_value(value):
 
 if __name__ == "__main__":
     # Read an example image
-    img = cv2.imread("data/cat.jpg")
+    img = cv2.imread("data/girl.jpg")
 
     # Create a window and display the original image
     window_name = "Image with Trackbar"
