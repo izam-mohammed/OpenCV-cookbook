@@ -245,7 +245,21 @@ def haarcasecade():
     cv2.imshow("image with faces", img)
 
 
-basic()
-haarcasecade()
+def contours():
+    gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+    _, binary_img = cv2.threshold(gray, 127, 255, cv2.THRESH_BINARY)
+    contours, _ = cv2.findContours(
+        binary_img, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE
+    )
 
-cv2.waitKey(0)
+    contour_img = img.copy()
+    cv2.drawContours(contour_img, contours, -1, (0, 255, 0), 2)
+
+    cv2.imshow("contours", contour_img)
+
+
+if __name__ == "__main__":
+    basic()
+    contours()
+
+    cv2.waitKey(0)
