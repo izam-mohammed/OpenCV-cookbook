@@ -58,6 +58,27 @@ def webcam_video():
     cv2.destroyAllWindows()
 
 
+def date_and_time_on_video():
+    cap = cv2.VideoCapture(0)
+    while True:
+        success, frame = cap.read()
+        now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        frame = cv2.putText(
+            frame,
+            f"time - {now}",
+            (30, 30),
+            cv2.FONT_HERSHEY_SIMPLEX,
+            0.7,
+            (0, 255, 0),
+            2,
+        )
+        cv2.imshow("video with time", frame)
+
+        if cv2.waitKey(1) & 0xFF == ord("d"):
+            break
+    cap.release()
+
+
 def shapes():
     global blank
     blank = np.zeros((500, 500, 3), dtype="uint8")
